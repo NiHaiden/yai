@@ -1,5 +1,6 @@
 import {createFileRoute, useNavigate} from "@tanstack/react-router";
 import {Button} from "@/components/ui/button.tsx";
+import {ArrowRightCircle} from "lucide-react";
 
 export const Route = createFileRoute('/')({
     component: Index,
@@ -12,7 +13,7 @@ function Index() {
             <img src={"/achillobator.webp"} alt={"logo"} width={250}/>
             <h1 className={"text-4xl font-semibold "}>Welcome to the Bluefin Installer.</h1>
             <p>You're just a few clicks away from a fresh Bluefin installation.</p>
-            <Button variant={"outline"} className={"text-black"} onClick={() => navigate({to: "/disks"})}>Get started</Button>
+            <Button variant={"default"} className={"p-5 text-lg inline-flex items-center"} onClick={() => navigate({to: "/disks"})}>Get started <ArrowRightCircle/></Button>
         </main>
     )
 }
