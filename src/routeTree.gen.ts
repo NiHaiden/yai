@@ -11,10 +11,24 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as InstallationImport } from './routes/installation'
+import { Route as DoneImport } from './routes/done'
 import { Route as DisksImport } from './routes/disks'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const InstallationRoute = InstallationImport.update({
+  id: '/installation',
+  path: '/installation',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DoneRoute = DoneImport.update({
+  id: '/done',
+  path: '/done',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const DisksRoute = DisksImport.update({
   id: '/disks',
@@ -46,6 +60,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DisksImport
       parentRoute: typeof rootRoute
     }
+    '/done': {
+      id: '/done'
+      path: '/done'
+      fullPath: '/done'
+      preLoaderRoute: typeof DoneImport
+      parentRoute: typeof rootRoute
+    }
+    '/installation': {
+      id: '/installation'
+      path: '/installation'
+      fullPath: '/installation'
+      preLoaderRoute: typeof InstallationImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +82,46 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/disks': typeof DisksRoute
+  '/done': typeof DoneRoute
+  '/installation': typeof InstallationRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/disks': typeof DisksRoute
+  '/done': typeof DoneRoute
+  '/installation': typeof InstallationRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/disks': typeof DisksRoute
+  '/done': typeof DoneRoute
+  '/installation': typeof InstallationRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/disks'
+  fullPaths: '/' | '/disks' | '/done' | '/installation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/disks'
-  id: '__root__' | '/' | '/disks'
+  to: '/' | '/disks' | '/done' | '/installation'
+  id: '__root__' | '/' | '/disks' | '/done' | '/installation'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DisksRoute: typeof DisksRoute
+  DoneRoute: typeof DoneRoute
+  InstallationRoute: typeof InstallationRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DisksRoute: DisksRoute,
+  DoneRoute: DoneRoute,
+  InstallationRoute: InstallationRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +135,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/disks"
+        "/disks",
+        "/done",
+        "/installation"
       ]
     },
     "/": {
@@ -105,6 +145,12 @@ export const routeTree = rootRoute
     },
     "/disks": {
       "filePath": "disks.tsx"
+    },
+    "/done": {
+      "filePath": "done.tsx"
+    },
+    "/installation": {
+      "filePath": "installation.tsx"
     }
   }
 }
