@@ -1,6 +1,2 @@
 # YAI - Yet another installer
-
-Probably developing another installer.
-Currently work in progress.
-
-<img src="media/yai-screen.png" width="750">
+Now a repo at in the Universal Blue Organization. [https://github.com/ublue-os/yai](https://github.com/ublue-os/yai)
